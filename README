@@ -1,0 +1,36 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=369
+
+Atomcoder Vim Scripts 
+
+Enter Vim commands like game cheat codes, press Enter then type command. Commands are entered in command line and not as maps. This means you could correct typing mistakes before invoking the command.
+
+Just my various Vim settings, mappings, functions for Java Programming.
+
+Press Enter (<CR>) invokes ":Vim" prompt in command line. ":Vim" calls the "Vim" function. Then type "lc<CR>" to line comment the current line (or highlighted lines) of Java, Vim, XML code. "<CR>nlc<CR>" will uncomment it.
+
+Some ":Vim" commands:
+- tt - toggle tomcat
+- tr - tomcat shutdown tomcat startup
+- te - tomcat shutdown
+- cvsd - cvs diff on current file
+- cvsci - cvs ci
+- cvsru - :del % then cvs up
+- cvstF - cvs tag -F with hardcoded tag
+- cvsup - cvs up
+- cvsv - cvs up -p
+- cvslga - cvs log
+- fe - start Sexplorer
+- cd - cd to directory containing current file
+
+Some maps:
+- <F8> - :!ant work-webapp
+- <F9> - :!ant work-compile
+- p - works more like mswin <C-V> when text is highlighted
+- g/ - put current word in the "/ register so that a substring that matches it gets highligthed
+- g? - put current word in the "/ register so that a word that matches it gets highligthed
+- ZR :e!<CR>
+- ZU :up<CR>
+- ZZ <Nop>
+- ZD :bd!<CR>
+- ZC :bd<CR>
+

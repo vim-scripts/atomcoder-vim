@@ -39,10 +39,14 @@ set shortmess=filnxtToOA
 set notimeout
 set showmatch nostartofline showcmd noruler cmdheight=2
 set report=0 ls=2
-set titlestring=Vim
+" set titlestring=Vim
+set titlestring=%<%F%=%l/%L/%P titlelen=70
+set titlelen=120
+" set titlestring=\ %.50{getcwd()}%)%(\ %a\ (%.70{expand(\"%:p\")})
 set formatprg=sort
 set incsearch
 set hlsearch
+set ignorecase
 
 set grepprg=grep\ -n
 set grepformat=%f:%l:%m,%l:%m
@@ -198,9 +202,12 @@ function! LineComment() range
         let commentStart = '" '
     elseif fileType == "java"
         let commentStart = '\/\/ '
-    elseif fileType == "html" || fileType == "xml" || fileType == "jsp" || fileType == "xsl"
+    elseif fileType == "html" || fileType == "xml" || fileType == "xsl"
         let commentStart = '<!-- '
         let commentEnd = ' -->'
+    elseif fileType == "jsp"
+        let commentStart = '<%-- '
+        let commentEnd = ' --%>'
     elseif fileType == "sh" || fileType == "conf" || fileType == "expect"
         let commentStart = '# '
     elseif fileType == "sql"
@@ -228,9 +235,12 @@ function! NoLineComment() range
         let commentStart = '" '
     elseif fileType == "java"
         let commentStart = '\/\/\s\='
-    elseif fileType == "html" || fileType == "xml" || fileType == "jsp" || fileType == "xsl"
+    elseif fileType == "html" || fileType == "xml" || fileType == "xsl"
         let commentStart = '<!--\s\='
         let commentEnd = ' -->'
+    elseif fileType == "jsp"
+        let commentStart = '<%-- '
+        let commentEnd = ' --%>'
     elseif fileType == "sh" || fileType == "conf" || fileType == "expect"
         let commentStart = '#\s\='
     elseif fileType == "sql"

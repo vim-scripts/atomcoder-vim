@@ -96,15 +96,30 @@ nmap <F9> _ea_work-compile
 
 " Tomcat
 let $TOMCAT_HOME='\tomcat'
-let $tomcat='shutdown'
-nmap _ta_ :if $tomcat == 'startup'<CR>let $tomcat='shutdown'<CR>else<CR>let $tomcat='startup'<CR>endif<CR>:echo $tomcat<CR>
-nmap _tx_ :execute 'silent !\%TOMCAT_HOME\%\bin\' . $tomcat<CR>
-nmap _te_ :let $tomcat='shutdown'<CR>_tx_
-nmap _tr_ :let $tomcat='shutdown'<CR>_tx__tt_
-nmap _tt_ _ta__tx_
-" let $CATALINA_HOME='\local\tomcat-4.0.3'
-" nmap _tx_ :execute 'silent !\%CATALINA_HOME\%\bin\' . $tomcat<CR>
-" nmap _tr_ :let $tomcat='shutdown'<CR>_tx_:sleep 5<CR>_tt_
+nmap _t1_ :let $TOMCAT_HOME='\tomcat'<CR>:echo $TOMCAT_HOME<CR>
+nmap _t2_ :let $TOMCAT_HOME='\tomcat2'<CR>:echo $TOMCAT_HOME<CR>
+nmap _t3_ :let $TOMCAT_HOME='\tomcat3'<CR>:echo $TOMCAT_HOME<CR>
+let $action='shutdown'
+" nmap _ta_ :if $action == 'startup'<CR>let $action='shutdown'<CR>else<CR>let $action='startup'<CR>endif<CR>:echo $action<CR>
+nmap _tx_ :execute 'silent !\%TOMCAT_HOME\%\bin\' . $action<CR>
+nmap _te_ :let $action='shutdown'<CR>_tx_
+nmap _tr_ :let $action='shutdown'<CR>_tx__tt_
+" nmap _tt_ _ta__tx_
+
+" Catalina
+" let $CATALINA_HOME='\devapps\jakarta-tomcat-4.0.4\'
+" nmap _ca_ :if $action == 'startup'<CR>let $action='shutdown'<CR>else<CR>let $action='startup -security'<CR>endif<CR>:echo $action<CR>
+" nmap _cx_ :execute 'silent !\%CATALINA_HOME\%\bin\' . $action<CR>
+" nmap _ce_ :let $action='shutdown'<CR>_cx_
+" nmap _cr_ :let $action='shutdown'<CR>_cx_:sleep 5<CR>_ct_
+" nmap _ct_ _ca__cx_
+let $CATALINA_HOME='\devapps\jakarta-tomcat-4.0.4\'
+nmap _cx_ :execute $action<CR>
+nmap _ce_ :execute 'silent !\backup\e2open\cm\cmstop.cmd'<CR>
+nmap _cr_ :execute '!\backup\e2open\cm\cmrestart.cmd'<CR>
+" nmap _ce_ :let $action='shutdown'<CR>_cx_
+" nmap _cr_ :let $action='shutdown'<CR>_cx_:sleep 5<CR>_ct_
+" nmap _ct_ _ca__cx_
 
 " Websphere
 let $WEBSPHERE_HOME='\WebSphere'
@@ -113,10 +128,11 @@ nmap _wa_ :if $websphere == 'startServer'<CR>let $websphere='stopServer'<CR>else
 nmap _wx_ :execute 'silent !\%WEBSPHERE_HOME\%\AppServer\bin\' . $websphere<CR>
 nmap _we_ :let $websphere='stopServer'<CR>_wx_
 nmap _wr_ :let $websphere='stopServer'<CR>_wx__wt_
-nmap _wt_ _wa__wx_
+" nmap _wt_ _wa__wx_
 
 " hsqldb
 let $HSQLDB_HOME='\local\hsqldb'
-let $hsqldb='runServer -database pmowork -port 9002'
-nmap _dt_ :execute 'silent !\%HSQLDB_HOME\%\demo\' . $hsqldb<CR>
+let $db='ewarna -port 9002'
+nmap _dt_ :execute '!start '. $HSQLDB_HOME . '\demo\runServer.bat -database ' . $db<CR>
+nmap _dm_ :execute '!start '. $HSQLDB_HOME . '\demo\runManager.bat'<CR>
 
